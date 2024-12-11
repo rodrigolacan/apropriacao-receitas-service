@@ -38,7 +38,7 @@
 				<spring.profile>dev</spring.profile>
 			</properties>
 			<build>
-				<finalName>apropriacao-dev</finalName>
+				<finalName>ROOT</finalName>
 			</build>
 		</profile>
 		<profile>
@@ -47,7 +47,7 @@
 				<spring.profile>prod</spring.profile>
 			</properties>
 			<build>
-				<finalName>apropriacao</finalName>
+				<finalName>ROOT</finalName>
 			</build>
 		</profile>
 
