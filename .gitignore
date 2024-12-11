@@ -1,0 +1,40 @@
+# Maven build directory
+/target/*
+
+# IntelliJ IDEA files
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+*.log
+
+# Eclipse files (if applicable)
+.classpath
+.project
+.settings/
+
+# Logs
+logs/
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Maven dependency cache
+/.mvn/
+mvnw
+mvnw.cmd
+
+# Application properties
+application.properties
+application.yml
+
+# Ignore local environment files
+.env
