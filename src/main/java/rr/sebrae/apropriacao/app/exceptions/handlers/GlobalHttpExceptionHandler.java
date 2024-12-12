@@ -1,4 +1,4 @@
-package rr.sebrae.apropriacao.app.exceptions.http;
+package rr.sebrae.apropriacao.app.exceptions.handlers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -6,11 +6,12 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
+import rr.sebrae.apropriacao.app.exceptions.http.ResourceNotFoundException;
 
 import java.util.Map;
 
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class GlobalHttpExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleException(Exception e) {
@@ -49,5 +50,17 @@ public class GlobalExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(errorResponse);
+    }
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleResourceNotFoundException(ResourceNotFoundException e) {
+        Map<String, Object> errorResponse = Map.of(
+                "type", "https://httpstatuses.com/404",
+                "title", "Resource Not Found",
+                "status", HttpStatus.NOT_FOUND.value(),
+                "detail", e.getMessage(),
+                "instance", "/rest"
+        );
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 }
