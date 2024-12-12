@@ -12,7 +12,7 @@ import java.util.Set;
 @Table(name = "tipo_pagamento")
 public class TipoPagamento {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tipo_pagamento_id_gen")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @SequenceGenerator(name = "tipo_pagamento_id_gen", sequenceName = "tipo_pagamento_id_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Integer id;
