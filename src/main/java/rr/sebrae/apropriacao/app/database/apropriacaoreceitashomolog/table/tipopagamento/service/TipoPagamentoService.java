@@ -7,6 +7,7 @@ import rr.sebrae.apropriacao.app.database.apropriacaoreceitashomolog.table.tipop
 import rr.sebrae.apropriacao.app.database.apropriacaoreceitashomolog.table.tipopagamento.repository.TipoPagamentoRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Profile("dev")
@@ -16,5 +17,13 @@ public class TipoPagamentoService {
 
     public List<TipoPagamento> findAllTipoPagamento() {
         return tipoPagamentoRepository.findAll();
+    }
+
+    public Optional<TipoPagamento> findTipoPagamentoById(Integer id) {
+        return tipoPagamentoRepository.findById(id);
+    }
+
+    public TipoPagamento saveTipoPagamento(TipoPagamento tipoPagamento) {
+        return tipoPagamentoRepository.save(tipoPagamento);
     }
 }
