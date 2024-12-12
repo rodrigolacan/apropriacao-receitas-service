@@ -62,10 +62,6 @@ public class ViaRecibo {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getNomeCliente() {
         return nomeCliente;
     }

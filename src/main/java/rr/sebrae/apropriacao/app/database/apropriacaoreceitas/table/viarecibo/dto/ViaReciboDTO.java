@@ -3,7 +3,6 @@ package rr.sebrae.apropriacao.app.database.apropriacaoreceitas.table.viarecibo.d
 import java.time.LocalDate;
 
 public record ViaReciboDTO(
-        Integer id,
         String nomeCliente,
         Integer tipoPagamentoId,
         String servicoFaturado,
