@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.Proxy;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import rr.sebrae.apropriacao.app.database.apropriacaoreceitas.table.tipopagamento.entity.TipoPagamento;
 
 import java.time.LocalDate;
@@ -37,12 +39,14 @@ public class ViaRecibo {
     @Column(name = "data_final_prestacao_servico", nullable = false, length = Integer.MAX_VALUE)
     private String dataFinalPrestacaoServico;
 
+    @CreatedDate
     @Column(name = "created_at")
     private LocalDate createdAt;
 
     @Column(name = "deleted_at")
     private LocalDate deletedAt;
 
+    @LastModifiedDate
     @Column(name = "update_at")
     private LocalDate updateAt;
 
