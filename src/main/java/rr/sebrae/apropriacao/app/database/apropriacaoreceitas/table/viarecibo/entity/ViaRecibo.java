@@ -43,6 +43,17 @@ public class ViaRecibo {
     @Column(name = "deleted_at")
     private LocalDate deletedAt;
 
+    @Column(name = "update_at")
+    private LocalDate updateAt;
+
+    public LocalDate getUpdateAt() {
+        return updateAt;
+    }
+
+    public void setUpdateAt(LocalDate updateAt) {
+        this.updateAt = updateAt;
+    }
+
     public Integer getId() {
         return id;
     }
