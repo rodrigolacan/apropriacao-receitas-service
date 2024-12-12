@@ -13,30 +13,41 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleException(Exception e) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body("Ocorreu um erro interno: " + e.getMessage());
+    public ResponseEntity<Map<String, Object>> handleException(Exception e) {
+        Map<String, Object> errorResponse = Map.of(
+                "type", "https://httpstatuses.com/500",
+                "title", "Internal Server Error",
+                "status", HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                "detail", "Ocorreu um erro interno: " + e.getMessage(),
+                "instance", "/rest"
+        );
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
-    public ResponseEntity<Map<String, String>> handleNotFound(NoHandlerFoundException ex) {
-        Map<String, String> errorResponse = Map.of(
-                "error", "Not Found",
-                "message", "The requested resource was not found",
-                "path", ex.getRequestURL()
+    public ResponseEntity<Map<String, Object>> handleNotFound(NoHandlerFoundException ex) {
+        Map<String, Object> errorResponse = Map.of(
+                "type", "https://httpstatuses.com/404",
+                "title", "Not Found",
+                "status", HttpStatus.NOT_FOUND.value(),
+                "detail", "A URL solicitada não foi encontrada",
+                "instance", ex.getRequestURL()
         );
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
+
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
-    public ResponseEntity<Map<String, String>> handleMethodNotAllowed(HttpRequestMethodNotSupportedException ex) {
-        Map<String, String> errorResponse = Map.of(
-                "error", "Method Not Allowed",
-                "message", "The HTTP method " + ex.getMethod() + " is not supported for this request",
-                "detail message", ex.getDetailMessageCode()
+    public ResponseEntity<Map<String, Object>> handleMethodNotAllowed(HttpRequestMethodNotSupportedException ex) {
+        Map<String, Object> errorResponse = Map.of(
+                "type", "https://httpstatuses.com/405",
+                "title", "Method Not Allowed",
+                "status", HttpStatus.METHOD_NOT_ALLOWED.value(),
+                "detail", "O método HTTP " + ex.getMethod() + " não é suportado para esta solicitação",
+                "instance", "/rest"  // Isso pode ser ajustado conforme a URL da sua API
         );
 
         return ResponseEntity.status(HttpStatus.METHOD_NOT_ALLOWED).body(errorResponse);
     }
 }
-
