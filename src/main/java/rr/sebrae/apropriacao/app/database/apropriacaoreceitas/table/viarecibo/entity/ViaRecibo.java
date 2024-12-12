@@ -20,7 +20,7 @@ public class ViaRecibo {
     @Column(name = "nome_cliente", nullable = false, length = Integer.MAX_VALUE)
     private String nomeCliente;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @ColumnDefault("nextval('via_recibo_tipo_pagamento_seq')")
     @JoinColumn(name = "tipo_pagamento", nullable = false)
     private TipoPagamento tipoPagamento;
