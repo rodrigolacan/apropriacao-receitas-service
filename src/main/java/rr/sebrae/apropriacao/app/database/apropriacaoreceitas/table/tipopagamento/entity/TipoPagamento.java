@@ -20,7 +20,7 @@ public class TipoPagamento {
     @Column(name = "nome_tipo_pagamento", nullable = false, length = Integer.MAX_VALUE)
     private String nomeTipoPagamento;
 
-    @OneToMany(mappedBy = "tipoPagamento")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "tipoPagamento")
     private Set<ViaRecibo> viaRecibos = new LinkedHashSet<>();
 
     public Integer getId() {
