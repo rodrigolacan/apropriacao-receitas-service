@@ -2,19 +2,21 @@ package rr.sebrae.apropriacao.app.database.apropriacaoreceitas.table.viarecibo.e
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.Proxy;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import rr.sebrae.apropriacao.app.database.apropriacaoreceitas.table.tipopagamento.entity.TipoPagamento;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Profile("prod")
 @Table(name = "via_recibo")
+@EntityListeners(AuditingEntityListener.class)
 public class ViaRecibo {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @ColumnDefault("nextval('via_recibo_id_seq')")
     @Column(name = "id", nullable = false)
     private Integer id;
@@ -41,20 +43,20 @@ public class ViaRecibo {
 
     @CreatedDate
     @Column(name = "created_at")
-    private LocalDate createdAt;
+    private LocalDateTime createdAt;
 
     @Column(name = "deleted_at")
-    private LocalDate deletedAt;
+    private LocalDateTime deletedAt;
 
     @LastModifiedDate
     @Column(name = "update_at")
-    private LocalDate updateAt;
+    private LocalDateTime updateAt;
 
-    public LocalDate getUpdateAt() {
+    public LocalDateTime getUpdateAt() {
         return updateAt;
     }
 
-    public void setUpdateAt(LocalDate updateAt) {
+    public void setUpdateAt(LocalDateTime updateAt) {
         this.updateAt = updateAt;
     }
 
@@ -110,19 +112,19 @@ public class ViaRecibo {
         this.dataFinalPrestacaoServico = dataFinalPrestacaoServico;
     }
 
-    public LocalDate getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(LocalDate createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public LocalDate getDeletedAt() {
+    public LocalDateTime getDeletedAt() {
         return deletedAt;
     }
 
-    public void setDeletedAt(LocalDate deletedAt) {
+    public void setDeletedAt(LocalDateTime deletedAt) {
         this.deletedAt = deletedAt;
     }
 
