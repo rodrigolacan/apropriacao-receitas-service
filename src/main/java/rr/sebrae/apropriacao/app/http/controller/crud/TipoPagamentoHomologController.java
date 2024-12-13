@@ -26,14 +26,14 @@ public class TipoPagamentoHomologController {
     @GetMapping("/tipopagamento")
     public ResponseEntity<Object> allTipoPagamento() {
         List<TipoPagamento> allTipoPagamento = tipoPagamentoService.findAllTipoPagamento();
-        return ResponseHandler.generateResponse("Successfully retrieved data!", HttpStatus.OK, allTipoPagamento);
+        return ResponseHandler.generateResponse("Tipos Pagamentos retornados com sucesso!", HttpStatus.OK, allTipoPagamento);
     }
 
     @GetMapping("/tipopagamento/{id}")
     public ResponseEntity<Object> findTipoPagamentoById(@PathVariable int id) {
         Optional<TipoPagamento> tipoPagamento = tipoPagamentoService.findTipoPagamentoById(id);
-        return tipoPagamento.map(tp -> ResponseHandler.generateResponse("Successfully retrieved data!", HttpStatus.OK, tp))
-                .orElseThrow(() -> new ResourceNotFoundException("Recurso não encontrado para id " + id));
+        return tipoPagamento.map(tp -> ResponseHandler.generateResponse("Tipo Pagamento criado com sucesso!", HttpStatus.OK, tp))
+                .orElseThrow(() -> new ResourceNotFoundException("Tipo Pagamento não encontrado para o id " + id));
     }
 
     @PostMapping("/tipopagamento")
@@ -45,6 +45,17 @@ public class TipoPagamentoHomologController {
         TipoPagamento savedTipoPagamento = tipoPagamentoService.saveTipoPagamento(tipoPagamento);
 
         return ResponseHandler.generateResponse("Tipo de pagamento criado com sucesso!", HttpStatus.CREATED, savedTipoPagamento);
+    }
+
+    @PutMapping("/tipopagamento")
+    public ResponseEntity<Object> updateTipoPagamento(@RequestBody TipoPagamentoDTO tipoPagamentoDTO) {
+        TipoPagamento tipoPagamento = new TipoPagamento();
+        tipoPagamento.setId(tipoPagamentoDTO.id());
+        tipoPagamento.setNomeTipoPagamento(tipoPagamentoDTO.nomeTipoPagamento());
+
+        TipoPagamento putTipoPagamento = tipoPagamentoService.saveTipoPagamento(tipoPagamento);
+
+        return ResponseHandler.generateResponse("Tipo de pagamento atulizado com sucesso!", HttpStatus.OK, putTipoPagamento);
     }
 
 
