@@ -1,5 +1,6 @@
 package rr.sebrae.apropriacao.app.database.apropriacaoreceitashomolog.table.tipopagamento.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.context.annotation.Profile;
 import rr.sebrae.apropriacao.app.database.apropriacaoreceitashomolog.table.viarecibo.entity.ViaRecibo;
@@ -21,6 +22,7 @@ public class TipoPagamento {
     private String nomeTipoPagamento;
 
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "tipoPagamento")
+    @JsonIgnore
     private Set<ViaRecibo> viaRecibos = new LinkedHashSet<>();
 
     public Integer getId() {
