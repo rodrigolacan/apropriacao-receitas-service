@@ -32,7 +32,7 @@ public class TipoPagamentoHomologController {
     @GetMapping("/tipopagamento/{id}")
     public ResponseEntity<Object> findTipoPagamentoById(@PathVariable int id) {
         Optional<TipoPagamento> tipoPagamento = tipoPagamentoService.findTipoPagamentoById(id);
-        return tipoPagamento.map(tp -> ResponseHandler.generateResponse("Tipo Pagamento criado com sucesso!", HttpStatus.OK, tp))
+        return tipoPagamento.map(tp -> ResponseHandler.generateResponse("Tipo Pagamento retornado com sucesso!", HttpStatus.OK, tp))
                 .orElseThrow(() -> new ResourceNotFoundException("Tipo Pagamento não encontrado para o id " + id));
     }
 
