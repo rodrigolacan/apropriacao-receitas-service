@@ -3,14 +3,19 @@ package rr.sebrae.apropriacao.app.database.apropriacaoreceitas.table.tipopagamen
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.context.annotation.Profile;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import rr.sebrae.apropriacao.app.database.apropriacaoreceitas.table.viarecibo.entity.ViaRecibo;
 
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
 @Profile("prod")
 @Table(name = "tipo_pagamento")
+@EntityListeners(AuditingEntityListener.class)
 public class TipoPagamento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +29,17 @@ public class TipoPagamento {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "tipoPagamento")
     @JsonIgnore
     private Set<ViaRecibo> viaRecibos = new LinkedHashSet<>();
+
+    @CreatedDate
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
 
     public Integer getId() {
         return id;
@@ -47,6 +63,30 @@ public class TipoPagamento {
 
     public void setViaRecibos(Set<ViaRecibo> viaRecibos) {
         this.viaRecibos = viaRecibos;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
     }
 
 }
