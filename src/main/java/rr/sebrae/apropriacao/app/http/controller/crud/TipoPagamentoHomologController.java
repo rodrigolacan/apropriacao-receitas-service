@@ -58,11 +58,11 @@ public class TipoPagamentoHomologController {
         return ResponseHandler.generateResponse("Tipo de pagamento atulizado com sucesso!", HttpStatus.OK, putTipoPagamento);
     }
 
+    @DeleteMapping("/tipopagamento/{id}")
+    public ResponseEntity<Object> deleteTipoPagamento(@PathVariable int id) {
+        tipoPagamentoService.softDeleteTipoPagamentoById(id);
 
-
-    @GetMapping("/hello")
-    public String hello() {
-        return "Hello World";
+        return ResponseHandler.generateResponse("Tipo pagamento deletado com sucesso!", HttpStatus.OK, null);
     }
 
 }
