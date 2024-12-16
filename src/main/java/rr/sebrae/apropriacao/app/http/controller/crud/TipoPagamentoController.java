@@ -56,4 +56,11 @@ public class TipoPagamentoController {
 
         return ResponseHandler.generateResponse("Tipo de pagamento atulizado com sucesso!", HttpStatus.OK, putTipoPagamento);
     }
+
+    @DeleteMapping("/tipopagamento/{id}")
+    public ResponseEntity<Object> deleteTipoPagamento(@PathVariable int id) {
+        tipoPagamentoService.softDeleteTipoPagamentoById(id);
+
+        return ResponseHandler.generateResponse("Tipo pagamento deletado com sucesso!", HttpStatus.OK, null);
+    }
 }
