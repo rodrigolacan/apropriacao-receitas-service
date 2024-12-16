@@ -62,4 +62,12 @@ public class ViaReciboHomologController {
         ViaRecibo savedViaRecibo = viaReciboService.saveViaRecibo(viaRecibo);
         return ResponseHandler.generateResponse("Tipo de pagamento criado com sucesso!", HttpStatus.CREATED, savedViaRecibo);
     }
+
+    @DeleteMapping("/viarecibos/{id}")
+    public ResponseEntity<Object> deleteViaRecibo(@PathVariable int id) {
+        ViaRecibo viaReciboDeleted = viaReciboService.softDeleteViaReciboById(id);
+
+        return ResponseHandler.generateResponse("Via Recibo deletado com sucesso!", HttpStatus.OK, viaReciboDeleted);
+
+    }
 }
