@@ -16,7 +16,6 @@ out/
 
 # Logs
 logs/
-*.log
 
 # Temporary files
 *.tmp
