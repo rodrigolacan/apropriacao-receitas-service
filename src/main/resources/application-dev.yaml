@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: api
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+    show-sql: true
+  sql:
+    init:
+      mode: always
