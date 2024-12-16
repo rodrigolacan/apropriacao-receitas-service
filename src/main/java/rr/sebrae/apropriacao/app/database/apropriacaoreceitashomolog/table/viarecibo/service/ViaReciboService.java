@@ -18,7 +18,7 @@ public class ViaReciboService {
     private ViaReciboRepository viaReciboRepository;
 
     public List<ViaRecibo> findAllViaRecibos() {
-        return viaReciboRepository.findAllActiveViaRecibos();
+        return viaReciboRepository.findAll();
     }
 
     public Optional<ViaRecibo> findViaReciboById(Integer id) {
