@@ -33,7 +33,9 @@ mvnw
 mvnw.cmd
 
 # Application properties
-application.properties
+/src/main/resources/application-dev.yaml
+/src/main/resources/application-prod.yaml
+/src/main/resources/application.yaml
 application.yml
 
 # Ignore local environment files
