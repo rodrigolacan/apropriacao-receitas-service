@@ -2,6 +2,7 @@ package rr.sebrae.apropriacao.app.exceptions.handlers;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -62,5 +63,18 @@ public class GlobalHttpExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
+    }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<Map<String, Object>> handleBadCredentialsException(BadCredentialsException ex) {
+        Map<String, Object> errorResponse = Map.of(
+                "type", "https://httpstatuses.com/401",
+                "title", "Unauthorized",
+                "status", HttpStatus.UNAUTHORIZED.value(),
+                "detail", "Credenciais inválidas: " + ex.getMessage(),
+                "instance", "/rest"
+        );
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
     }
 }
