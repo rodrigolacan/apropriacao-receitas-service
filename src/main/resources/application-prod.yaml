@@ -10,3 +10,8 @@ spring:
   sql:
     init:
       mode: always
+
+jwk:
+  set:
+    uri: https://lus.rr.sebrae.com.br/realms/microservices/protocol/openid-connect/certs
+
